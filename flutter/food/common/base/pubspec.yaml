@@ -1,0 +1,24 @@
+name: base
+description: Shared base module for feature module.
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  core:
+    path: ../../common/core
+  data:
+    path: ../../common/data
+  ui:
+    path: ../../common/ui
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:

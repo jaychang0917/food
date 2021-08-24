@@ -1,0 +1,1 @@
+This is app module composited by feature modules and tooling modules (e.g. debug, analytics).

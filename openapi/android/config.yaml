@@ -1,0 +1,7 @@
+artifactId: food-api-client
+groupId: com.jaychang.food.api
+packageName: com.jaychang.food.api
+artifactVersion: 0.0.1
+library: jvm-retrofit2
+useRxJava3: true
+supportAndroidApiLevel25AndBelow: true

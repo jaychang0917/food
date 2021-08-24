@@ -1,0 +1,9 @@
+artifactId: food-api-server
+groupId: com.jaychang.food.api
+apiPackage: com.jaychang.food.api
+packageName: com.jaychang.food.api
+modelPackage: com.jaychang.food.api
+artifactVersion: 0.0.1
+serverPort: "3000"
+interfaceOnly: true
+exceptionHandler: false

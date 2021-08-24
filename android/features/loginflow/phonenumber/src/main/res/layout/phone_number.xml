@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (C) 2021. Jay Chang
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.jaychang.food.feature.phonenumber.internal.PhoneNumberViewModel" />
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/surface">
+
+        <com.jaychang.food.ui.header.Header
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationType="close"
+            app:navigationOnClickListener="@{viewModel.close}" />
+
+        <com.jaychang.food.ui.loading.LoadingBar
+            android:id="@+id/loadingBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.isLoadingBarVisible ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/header"
+            app:layout_constraintTop_toBottomOf="@id/header"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/titleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:layout_marginEnd="@dimen/spacing_normal"
+            android:text="@string/phonenumber_title"
+            android:textAppearance="@style/TextAppearance.Food.H6"
+            android:textColor="@color/on_surface_primary"
+            app:layout_constraintTop_toBottomOf="@id/header" />
+
+        <com.jaychang.food.ui.textfield.TextField
+            android:id="@+id/phoneNumberTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:layout_marginEnd="@dimen/spacing_normal"
+            android:hint="@string/phonenumber_hint"
+            app:type="phone"
+            app:country="@{viewModel.selectedCountry}"
+            app:onLeadingIconClickListener="@{viewModel.onCountryFlagIconClicked}"
+            app:onTextChangedListener="@{viewModel.onPhoneNumberChanged}"
+            app:layout_constraintTop_toBottomOf="@id/titleView" />
+
+        <TextView
+            android:id="@+id/errorTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:textAppearance="@style/TextAppearance.Food.Body2"
+            android:textColor="@color/error"
+            android:visibility="@{viewModel.isErrorViewVisible ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="@id/phoneNumberTextField"
+            app:layout_constraintStart_toStartOf="@id/phoneNumberTextField"
+            app:layout_constraintTop_toBottomOf="@id/phoneNumberTextField"
+            android:text="@string/phonenumber_error_invalid_phone"
+            tools:visibility="visible" />
+
+        <com.jaychang.food.ui.button.Button
+            android:id="@+id/nextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="@{viewModel.isNextButtonEnabled}"
+            android:visibility="@{viewModel.isNextButtonVisible ? View.VISIBLE : View.GONE}"
+            android:onClick="@{() -> viewModel.onNextButtonClicked(phoneNumberTextField.getText())}"
+            android:text="@string/phonenumber_next"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,161 @@
+openapi: 3.0.3
+info:
+  title: food
+  version: '1.0'
+  contact:
+    name: Jay Chang
+    email: jaychang0917@gmail.com
+  description: Food project mock server
+servers:
+  - url: 'http://localhost:3000/api'
+paths:
+  '/users/{userId}':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+        description: User ID (e.g. phone number)
+    get:
+      summary: ''
+      operationId: get-users-userId
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      description: Check if the user with provided user ID exists.
+      tags:
+        - user
+  /sessions:
+    post:
+      summary: allSessions
+      operationId: post-sessions
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      description: Create a session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SessionRequestBody'
+        description: ''
+      tags:
+        - session
+  /countries:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - config
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Country'
+              examples:
+                200 Example:
+                  value:
+                    - id: AD
+                      name: Andorra
+                      code: '+376'
+                      image_data: iVBORw0KGgoAAAANSUhEUgAAAD8AAAAtCAMAAAAun0N9AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAzUExURf/MMQoptf/POw0tvtkgR98mTtIaQf/ON+ctVAYkqhAxxRI0yxQ20NY4KeZyL/CWO//tsYLvnwcAAAG5SURBVEjH7ZDbkptADERlGDwLBLz//7WRujU3VrHXqVTykpasGao43cLyI9IU6SOS/HN+D+oNfm8ylHqLB1ZZ3H8vv+kP8XnK2i/4LahLMn1iftt3NAva9txU8rPmL2gO3BfjN2s3gPYtI5NVhffb4CHbRfDIedzARibQ8cyPlCM5vPTn8m1+ygQw/Nfy57Hj/Ap+NBfR11mv92f+KPAw6PXL/M6DG8g806DsjnrCX/MvyX3+eVDnU37mBl/56Tgej/NUl5d8nH+cn5+TreF8QlkvPNNzPtw/FTThQebbXLtecxat8zhN5EXzU6PdIgmwUmXo20r44sbbc6OTWxk/oCht5j+Oh2I27SkDMy3lplPwPluHWwgM5Djw9wv3T74/6YUe4jQ0l4O8fYFaiEndUqeWX8DZLzgBZHFl2qVIcovk++dawv2/zw8w1n8vv20vxeFC3hu/1mFzxfdftxe5J5QfiYfo62Da0CYz5Nv+wFJnoPlfcKsG8kMwo/i7VAbF4yaRxv39kAJV2C7d1h1Ppe4wHqQbULf1+um43ZnK5OIghV67+DXefwj2KS200zN+lKyR/vN/i/8JEKI8RweOQZgAAAAASUVORK5CYII=
+      operationId: get-countries
+      description: Support countries
+    parameters: []
+components:
+  schemas:
+    Session:
+      title: Session
+      description: A user session
+      type: object
+      properties:
+        access_token:
+          type: string
+        user:
+          type: object
+          required:
+            - phone_number
+            - name
+          properties:
+            phone_number:
+              type: string
+            name:
+              type: string
+      required:
+        - access_token
+        - user
+      x-examples: {}
+    Country:
+      title: Country
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        code:
+          type: string
+        image_data:
+          type: string
+      required:
+        - id
+        - name
+        - code
+        - image_data
+      x-examples: {}
+    SessionRequestBody:
+      title: SessionRequestBody
+      type: object
+      properties:
+        phone_number:
+          type: string
+        password:
+          type: string
+      required:
+        - phone_number
+        - password
+    User:
+      title: User
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+        - id
+        - name
+      x-examples: {}
+    ApiError:
+      title: Error object
+      type: object
+      properties:
+        code:
+          type: string
+        title:
+          type: string
+        detail:
+          type: string
+      required:
+        - code

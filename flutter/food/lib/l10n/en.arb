@@ -1,0 +1,36 @@
+{
+    "@@locale": "en",
+    "@@last_modified": "2021-07-19T12:15:11+02:00",
+    "country_title": "Select a country",
+    "country_search_hint": "Search for a country",
+    "country_search_empty_result": "No Results for {keyword}.",
+    "@country_search_empty_result": {
+        "placeholders": {
+            "keyword": {}
+        }
+    },
+    "home_dummy": "Home",
+    "landing_main_sheet_title": "Get started with Food",
+    "landing_main_sheet_skip": "Skip for now",
+    "landing_main_sheet_hint": "Enter phone number",
+    "phonenumber_title": "Enter your phone number",
+    "phonenumber_hint": "Enter phone number",
+    "phonenumber_next": "Next",
+    "phonenumber_error_invalid_phone": "This phone number is invalid.",
+    "password_next": "Next",
+    "password_hint": "Enter password",
+    "password_title": "Welcome back,\\nEnter your password to continue",
+    "password_error_invalid_password": "The password you've entered is incorrect.",
+    "main_menu_home_title": "Home",
+    "main_menu_search_title": "Search",
+    "main_menu_order_title": "Order",
+    "main_menu_profile_title": "Profile",
+    "order_dummy": "Order",
+    "profile_dummy": "Profile",
+    "root_error_action": "Try Again",
+    "root_error_title": "Sorry For The Delay",
+    "root_error_message": "We had some trouble connecting but should have you eating shortly.",
+    "search_dummy": "Search",
+    "network_lost_message": "Offline",
+    "service_error_message": "Something went wrong!"
+}
